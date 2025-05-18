@@ -1,25 +1,376 @@
-/* Custom styling for slidev presentations */
+/* Custom styling for slidev presentations - Light mode green theme */
 
+/* ===== Color System ===== */
+:root {
+  /* Main Colors */
+  --main-color: #1C3731;
+  --accent-color: #5A8D7D;
+  --sub-color: #8FAF9F;
+  --background-color: #FCF8F3;
+  --text-heading: #1C3731;
+  --text-body: #333333;
+  --highlight-color: #4ECDC4;
+
+  /* System Colors */
+  --slidev-theme-primary: #1C3731;
+  --slidev-theme-secondary: #5A8D7D;
+  --slidev-theme-background: #E9F0EB;
+  --slidev-theme-foreground: #333333;
+  --slidev-theme-highlight: #4ECDC4;
+  --slidev-theme-code-bg: #2A3738;
+}
+
+/* ===== Typography ===== */
 .slidev-layout {
-  background-image: linear-gradient(60deg, #1a1d22 0%, #2c3440 100%);
-  color: #fff;
+  font-family: 'IBM Plex Sans', 'M PLUS 1p', sans-serif;
+}
+
+/* Headings in Japanese */
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  font-family: 'M PLUS 1p', 'IBM Plex Sans', sans-serif;
+}
+
+/* Code fonts */
+.slidev-layout code,
+.slidev-layout pre {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ===== Base Layout ===== */
+.slidev-layout {
+  background-color: var(--background-color);
+  color: var(--text-body);
+  position: relative;
+}
+
+/* ===== Cover Slide ===== */
+.slidev-layout.cover {
+  background: linear-gradient(135deg, #1A3636 0%, #1A3636 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
 }
 
 .slidev-layout.cover h1 {
-  font-size: 2rem;
-  line-height: 3rem;
+  text-align: left;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  color: white;
 }
 
+.slidev-layout.cover h1 + p {
+  color: white;
+  text-align: left;
+  opacity: 0.6;
+}
+
+/* ===== Content Slides ===== */
+.slidev-layout:not(.cover):not(.image) {
+  padding: 28px;
+  position: relative;
+  border: 8px solid var(--main-color);
+  box-sizing: border-box;
+}
+
+/* Section indicator */
+.slidev-layout:not(.cover) .section-indicator {
+  position: absolute;
+  top: 48px;
+  right: 48px;
+  font-size: 16px;
+  color: var(--accent-color);
+}
+
+/* Background accent */
+.slidev-layout:not(.cover)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--sub-color) 0%, transparent 70%);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* ===== Headings ===== */
+.slidev-layout h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 28px;
+}
+
+.slidev-layout h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-top: 24px;
+  margin-bottom: 20px;
+}
+
+.slidev-layout h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+/* ===== Body Text ===== */
+.slidev-layout p {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-body);
+  margin-bottom: 12px;
+}
+
+/* ===== Lists ===== */
+.slidev-layout ul,
+.slidev-layout ol {
+  margin-left: 24px;
+  margin-bottom: 16px;
+}
+
+.slidev-layout li {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  position: relative;
+  color: var(--text-body);
+}
+
+/* Custom bullet points */
+.slidev-layout ul li::marker {
+  color: var(--accent-color);
+  content: "▸ ";
+}
+
+/* Nested lists */
+.slidev-layout li ul,
+.slidev-layout li ol {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.slidev-layout li li {
+  font-size: 16px;
+}
+
+.slidev-layout li li li {
+  font-size: 14px;
+}
+
+/* ===== Blockquotes ===== */
 .slidev-layout blockquote {
-  border-left-width: 2px;
-  border-radius: 0;
-  border-color: rgb(250 204 21);
+  border-left: 4px solid var(--accent-color);
+  background-color: rgba(90, 141, 125, 0.05);
+  padding: 16px 24px;
+  margin: 24px 0;
   font-style: italic;
-  background: transparent;
+  color: var(--text-body);
 }
 
+.slidev-layout blockquote p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* ===== Links ===== */
+.slidev-layout a {
+  color: var(--main-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  border-bottom-width: 0;
+}
+
+/* ===== Boxes and Cards ===== */
 .slidev-layout .box {
-  border-radius: 0.5rem;
-  padding: 1rem;
-  border-width: 1px;
+  background-color: white;
+  border: 1px solid rgba(92, 141, 125, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0;
+  box-shadow: 0 2px 8px rgba(28, 55, 49, 0.08);
+}
+
+.slidev-layout .box h2 {
+  color: var(--main-color);
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.slidev-layout .box h3 {
+  color: var(--main-color);
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.slidev-layout .box ul {
+  margin-left: 0;
+}
+
+/* ===== Images ===== */
+.slidev-layout img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(28, 55, 49, 0.1);
+}
+
+/* ===== V-Clicks Animation ===== */
+.slidev-layout [v-click] {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.slidev-layout [v-click].v-clicked {
+  opacity: 1;
+}
+
+/* ===== Tweets and Social Embeds ===== */
+.slidev-layout .tweet {
+  max-width: 100%;
+  max-height: 439px;
+  overflow: hidden;
+}
+
+/* ===== Mermaid Diagrams ===== */
+.slidev-layout .mermaid {
+  background-color: transparent !important;
+}
+
+.slidev-layout .mermaid text {
+  fill: var(--text-body) !important;
+  font-family: 'IBM Plex Sans', 'M PLUS 1p', sans-serif !important;
+}
+
+.slidev-layout .mermaid .node rect,
+.slidev-layout .mermaid .node circle,
+.slidev-layout .mermaid .node ellipse,
+.slidev-layout .mermaid .node polygon {
+  fill: white !important;
+  stroke: var(--main-color) !important;
+  stroke-width: 2px !important;
+}
+
+.slidev-layout .mermaid .edgePath .path {
+  stroke: var(--accent-color) !important;
+  stroke-width: 2px !important;
+}
+
+.slidev-layout .mermaid .edgeLabel {
+  background-color: var(--background-color) !important;
+  color: var(--text-body) !important;
+}
+
+/* ===== Presenter Notes ===== */
+.slidev-note {
+  background-color: #f8f9fa;
+  color: var(--text-body);
+  border-top: 2px solid var(--accent-color);
+  font-size: 14px;
+  padding: 16px;
+}
+
+/* ===== Table Styles ===== */
+.slidev-layout table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(28, 55, 49, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.slidev-layout th {
+  background-color: var(--main-color);
+  color: white;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.slidev-layout td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(92, 141, 125, 0.1);
+  font-size: 16px;
+}
+
+.slidev-layout tr:last-child td {
+  border-bottom: none;
+}
+
+.slidev-layout tr:hover {
+  background-color: rgba(90, 141, 125, 0.05);
+}
+
+/* ===== Section Title Slides ===== */
+.slidev-layout.section h1 {
+  color: var(--main-color);
+  font-size: 36px;
+  border-bottom: 6px solid var(--accent-color);
+  padding-bottom: 20px;
+  margin-bottom: 36px;
+}
+
+/* ===== Special Styles ===== */
+.slidev-layout .warning {
+  color: #F87171;
+  font-weight: 600;
+}
+
+.slidev-layout .success {
+  color: #4ADE80;
+  font-weight: 600;
+}
+
+.slidev-layout .info {
+  color: var(--highlight-color);
+  font-weight: 600;
+}
+
+/* ===== Custom Transitions ===== */
+.fade-out-enter-active,
+.fade-out-leave-active {
+  transition: opacity 0.5s ease-out;
+}
+
+.fade-out-enter-from {
+  opacity: 0;
+}
+
+.fade-out-leave-to {
+  opacity: 0;
+}
+
+.fade-out-leave-from {
+  opacity: 1;
+}
+
+.fade-out-enter-to {
+  opacity: 1;
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .slidev-layout {
+    background-color: white !important;
+  }
+
+  .slidev-layout .box {
+    box-shadow: none !important;
+    border: 1px solid #e5e7eb !important;
+  }
 }
