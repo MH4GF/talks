@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "slidev --open slides.md",
-    "build": "slidev build slides.md --base /20250519 --out ../../dist/20250519",
+    "build": "slidev build slides.md --base /20250519/ --out ../../dist/20250519",
     "export": "slidev export slides.md"
   }
 }
