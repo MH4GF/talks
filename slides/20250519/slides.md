@@ -49,13 +49,6 @@ GraphQLや静的解析、GitHub Actionsが好きで、最近はLiam ERDという
 -->
 
 ---
-layout: image
-image: /liam-erd.png
-backgroundSize: contain
-class: image
----
-
----
 
 # "[The 70% problem: Hard truths about AI-assisted coding](https://addyo.substack.com/p/the-70-problem-hard-truths-about)" by Addy Osmani
 
@@ -497,7 +490,6 @@ export function formatDate(date: Date, format: string): string {
   const result = ... // 日付を特定のフォーマットに変換する複雑なロジック
   return result
 }
-
 // AIが作成したテスト（モック濫用）
 describe('formatDate', () => {
   vi.mock('../utils/dateUtils', () => ({
@@ -505,15 +497,13 @@ describe('formatDate', () => {
   }))
 
   it('formats a date correctly', () => {
-    const result = formatDate(new Date(), 'YYYY-MM-DD');
-    expect(result).toBe('2025-05-19');
+    expect(formatDate(new Date(), 'YYYY-MM-DD')).toBe('2025-05-19');
   })
 });
 ```
 
 - **対策**：eslint-plugin-vitest で `vi.mock` / `vi.mocked` / `vi.spyOn` の使用を制限
   - モックを選択肢から除外させ、強制的に実装を見直させる
-  - テストコード生成は特に人間のチェックが不可欠
 
 </v-clicks>
 
@@ -537,7 +527,6 @@ AIには「テストを通すこと」を優先し、テストの本来の価値
 # 実運用のコツ
 
 <div class="grid grid-cols-[100%] gap-4">
-<div>
 
 <v-clicks>
 
@@ -552,7 +541,6 @@ AIには「テストを通すこと」を優先し、テストの本来の価値
 
 </v-clicks>
 
-</div>
 </div>
 
 ---
