@@ -545,6 +545,9 @@ AIには「テストを通すこと」を優先し、テストの本来の価値
 
 ---
 layout: center
+class: text-center
 ---
 
 # Thank you for listening!
+
+Slides on [mh4gf.dev](https://talks.mh4gf.dev/20250519)
