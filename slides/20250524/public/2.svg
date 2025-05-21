@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f8f9fa"/>
+
+  <!-- タイトル -->
+  <text x="400" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#FF5A5F">Airbnbのサーバー駆動UI「Ghost」フレームワークのアーキテクチャ</text>
+
+  <!-- サーバーサイド -->
+  <rect x="100" y="90" width="600" height="200" rx="10" ry="10" fill="#e1f5fe" stroke="#0288d1" stroke-width="2"/>
+  <text x="400" y="115" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#0288d1">サーバーサイド</text>
+
+  <!-- バックエンドサービス -->
+  <rect x="120" y="130" width="160" height="80" rx="5" ry="5" fill="#bbdefb" stroke="#1976d2" stroke-width="1"/>
+  <text x="200" y="165" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#1976d2">バックエンドサービス</text>
+  <text x="200" y="185" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1976d2">データ管理・ビジネスロジック</text>
+
+  <!-- Viaduct (GraphQL) -->
+  <rect x="320" y="130" width="160" height="80" rx="5" ry="5" fill="#bbdefb" stroke="#1976d2" stroke-width="1"/>
+  <text x="400" y="165" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#1976d2">Viaduct</text>
+  <text x="400" y="185" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1976d2">GraphQLベースの統一データレイヤー</text>
+
+  <!-- UI定義 -->
+  <rect x="520" y="130" width="160" height="80" rx="5" ry="5" fill="#bbdefb" stroke="#1976d2" stroke-width="1"/>
+  <text x="600" y="165" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#1976d2">UI定義</text>
+  <text x="600" y="185" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1976d2">Sections, Screens, Actions</text>
+
+  <!-- 矢印 -->
+  <line x1="280" y1="170" x2="320" y2="170" stroke="#1976d2" stroke-width="2"/>
+  <polygon points="315,165 320,170 315,175" fill="#1976d2"/>
+
+  <line x1="480" y1="170" x2="520" y2="170" stroke="#1976d2" stroke-width="2"/>
+  <polygon points="515,165 520,170 515,175" fill="#1976d2"/>
+
+  <!-- 統一レスポンス -->
+  <rect x="320" y="230" width="160" height="40" rx="5" ry="5" fill="#c8e6c9" stroke="#388e3c" stroke-width="1"/>
+  <text x="400" y="255" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#388e3c">統一GraphQLレスポンス</text>
+
+  <!-- クライアントサイド -->
+  <rect x="100" y="330" width="600" height="230" rx="10" ry="10" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
+  <text x="400" y="355" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#ff9800">クライアントサイド</text>
+
+  <!-- Web -->
+  <rect x="130" y="380" width="160" height="160" rx="5" ry="5" fill="#ffe0b2" stroke="#f57c00" stroke-width="1"/>
+  <text x="210" y="405" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#f57c00">Web (TypeScript)</text>
+
+  <!-- スマホアプリ -->
+  <rect x="320" y="380" width="160" height="160" rx="5" ry="5" fill="#ffe0b2" stroke="#f57c00" stroke-width="1"/>
+  <text x="400" y="405" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#f57c00">iOS (Swift)</text>
+
+  <rect x="510" y="380" width="160" height="160" rx="5" ry="5" fill="#ffe0b2" stroke="#f57c00" stroke-width="1"/>
+  <text x="590" y="405" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#f57c00">Android (Kotlin)</text>
+
+  <!-- 矢印 -->
+  <line x1="400" y1="270" x2="400" y2="320" stroke="#000" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="395,315 400,320 405,315" fill="#000"/>
+
+  <!-- Ghostフレームワーク（クライアント内部） -->
+  <rect x="140" y="425" width="140" height="105" rx="5" ry="5" fill="#ffcc80" stroke="#ef6c00" stroke-width="1"/>
+  <text x="210" y="445" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#ef6c00">Ghost Framework</text>
+
+  <rect x="150" y="455" width="120" height="25" rx="3" ry="3" fill="#fff" stroke="#ef6c00" stroke-width="1"/>
+  <text x="210" y="472" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#ef6c00">Sectionレンダラー</text>
+
+  <rect x="150" y="485" width="120" height="25" rx="3" ry="3" fill="#fff" stroke="#ef6c00" stroke-width="1"/>
+  <text x="210" y="502" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#ef6c00">Screenレイアウト</text>
+
+  <rect x="150" y="515" width="120" height="25" rx="3" ry="3" fill="#fff" stroke="#ef6c00" stroke-width="1"/>
+  <text x="210" y="532" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#ef6c00">Actionハンドラー</text>
+
+  <rect x="330" y="425" width="140" height="105" rx="5" ry="5" fill="#ffcc80" stroke="#ef6c00" stroke-width="1"/>
+  <text x="400" y="445" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#ef6c00">Ghost Framework</text>
+
+  <rect x="340" y="455" width="120" height="25" rx="3" ry="3" fill="#fff" stroke="#ef6c00" stroke-width="1"/>
+  <text x="400" y="472" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#ef6c00">Sectionレンダラー</text>
+
+  <rect x="340" y="485" width="120" height="25" rx="3" ry="3" fill="#fff" stroke="#ef6c00" stroke-width="1"/>
+  <text x="400" y="502" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#ef6c00">Screenレイアウト</text>
+
+  <rect x="340" y="515" width="120" height="25" rx="3" ry="3" fill="#fff" stroke="#ef6c00" stroke-width="1"/>
+  <text x="400" y="532" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#ef6c00">Actionハンドラー</text>
+
+  <rect x="520" y="425" width="140" height="105" rx="5" ry="5" fill="#ffcc80" stroke="#ef6c00" stroke-width="1"/>
+  <text x="590" y="445" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#ef6c00">Ghost Framework</text>
+
+  <rect x="530" y="455" width="120" height="25" rx="3" ry="3" fill="#fff" stroke="#ef6c00" stroke-width="1"/>
+  <text x="590" y="472" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#ef6c00">Sectionレンダラー</text>
+
+  <rect x="530" y="485" width="120" height="25" rx="3" ry="3" fill="#fff" stroke="#ef6c00" stroke-width="1"/>
+  <text x="590" y="502" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#ef6c00">Screenレイアウト</text>
+
+  <rect x="530" y="515" width="120" height="25" rx="3" ry="3" fill="#fff" stroke="#ef6c00" stroke-width="1"/>
+  <text x="590" y="532" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#ef6c00">Actionハンドラー</text>
+</svg>
