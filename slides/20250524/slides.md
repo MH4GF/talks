@@ -10,19 +10,15 @@ transition: fade-out
 title: Valibot Schema Driven UI - ノーコードWebサイトビルダーを実装してみよう！
 colorSchema: dark
 theme: default
+defaults:
+  layout: custom-default
 fonts:
-  sans: "Lexend Exa, Noto Sans JP"
+  sans: "Lexend Exa, IBM Plex Sans, Noto Sans JP"
 ---
 
 # Valibot Schema Driven UI<br>ノーコード Web サイトビルダーを実装してみよう！
 
-TSKaigi 2025 - 2025/05/24
-
-<div class="abs-br m-6 flex gap-2">
-  <button class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    @MH4GF <carbon:logo-github />
-  </button>
-</div>
+TSKaigi 2025 - 2025/05/24 @MH4GF
 
 ---
 
@@ -32,7 +28,7 @@ TSKaigi 2025 - 2025/05/24
 <div>
 
 - <div class="flex gap-1 absolute"><a class="inline-flex gap-1" href="https://route06.co.jp/"><img class="w-6 h-6" src="https://avatars.githubusercontent.com/u/62282963?v=4" />ROUTE06, inc.</a></div>
-- GraphQL, 静的解析, GitHub Actions が好き
+- 好きなcompiler optionは `erasableSyntaxOnly`
 - <div class="flex gap-1 absolute"><a class="inline-flex gap-1" href="https://liambx.com/"><img class="w-6 h-6" src="https://avatars.githubusercontent.com/u/187765721?v=4" />Liam ERD</a> PM 兼テックリード</div>
 - [mh4gf.dev](https://mh4gf.dev/) / [X](https://x.com/MH4GF) / [GitHub](https://github.com/MH4GF)
 
@@ -41,22 +37,28 @@ TSKaigi 2025 - 2025/05/24
 </div>
 
 ---
+layout: image
+image: /liam-erd.gif
+---
 
-# ノーコードプラットフォームとは
+
+---
+
+# ノーコードWebサイトビルダーとは
 
 <v-clicks>
 
-- プログラミングの知識がなくてもアプリケーションを構築できるツール
+- プログラミングの知識がなくても視覚的にWebサイトを構築できるツール
 - 代表例: Bubble、Webflow、STUDIO など
 - よくある機能
-  - ドラッグ&ドロップでパーツを選び、視覚的に UI を構築
+  - ドラッグ&ドロップでパーツを選び UI を構築
   - ビジュアルエディタでスタイル（色・サイズ・配置）を直感的に調整
   - ワンクリックでデプロイ・公開が可能
 
 </v-clicks>
 
 <!--
-ノーコードプラットフォームは、コーディングなしでアプリを作れる画期的なツールです。例えばWebflowなら、普段HTMLやCSSを書いたことがない方でも美しいWebサイトが作れます。
+ノーコードWebサイトビルダーは、コーディングなしでアプリを作れる画期的なツールです。例えばWebflowなら、普段HTMLやCSSを書いたことがない方でも美しいWebサイトが作れます。
 
 よくある機能を見ていきましょう。まず基本となるのがドラッグ&ドロップのUIです。ボタンやテキスト入力欄などの部品をマウス操作だけで配置できるため、HTMLやCSSを書く必要がありません。
 
@@ -78,7 +80,7 @@ TSKaigi 2025 - 2025/05/24
 </v-clicks>
 
 <!--
-これからノーコードプラットフォームの技術的な側面について考えていきましょう。
+これからノーコードWebサイトビルダーの技術的な側面について考えていきましょう。
 
 まず、ドラッグ&ドロップ操作をコードに変換する仕組みはどうなっているでしょうか？
 視覚的な操作がどのようにHTMLやCSSに変わるのか、考えたことはありますか？
@@ -98,20 +100,17 @@ TSKaigi 2025 - 2025/05/24
 
 <v-clicks>
 
-## 概要
-
-- ノーコードビルダーの UI 構築部分に焦点を当てた実装パターンの紹介
+- ノーコードWebサイトビルダーの UI 構築部分に焦点を当てた実装パターンの紹介
+  - APIとの連携やデータバインディングなどは話しません
 - **Valibot** と **TypeScript** を活用した型安全なアプローチ
-- スキーマ駆動による拡張性の高い UI コンポーネント設計
+- あくまで一例で、全てのノーコードビルダーがこの実装というわけではありません
 
-## ゴール
-
-**動的 UI 構築機能の型安全な実装パターンを理解し、日々の開発に活かせるようになる**
+ゴール: **動的 UI 構築機能の型安全な実装パターンを理解し、日々の開発に活かせるようになる**
 
 </v-clicks>
 
 <!--
-今日の発表では、ノーコードプラットフォームのUI構築機能に焦点を当て、その実装パターンを紹介します。
+今日の発表では、ノーコードWebサイトビルダーのUI構築機能に焦点を当て、その実装パターンを紹介します。
 
 特に、ValibotというTypeScript向けスキーマバリデーションライブラリを使った型安全な実装方法に注目します。これは単にノーコードビルダーだけでなく、動的なUIを扱うあらゆるケースで応用できる設計パターンです。
 
@@ -119,23 +118,21 @@ TSKaigi 2025 - 2025/05/24
 
 今日お話しする型安全なスキーマ駆動アプローチを学ぶことで、そうした動的UIを柔軟かつ安全に実装するヒントを持ち帰っていただけると思います。
 
-図に示すように、ノーコードプラットフォームには様々な機能がありますが、今回は赤色で示したUI構築部分を深掘りしていきます。
+図に示すように、ノーコードWebサイトビルダーには様々な機能がありますが、今回は赤色で示したUI構築部分を深掘りしていきます。
 -->
 
 ---
 
 # アジェンダ
 
-<v-clicks>
 
 1. **Valibot Schema Driven UI の基本概念**
 2. **デモ**
 3. **スキーマ定義とアーキテクチャ**
 4. **実装パターン**
 5. **拡張パターン**
-6. **まとめ**
+6. **まとめと展望**
 
-</v-clicks>
 
 <!--
 これから進めていく内容の全体像をご説明します。
@@ -148,7 +145,7 @@ TSKaigi 2025 - 2025/05/24
 
 実装パターンでは、実際のコードレベルで、スキーマからUIコンポーネントへの変換方法や、エディタの実装手法を紹介します。
 
-さらに発展的な内容として、スタイリングの実装やLLMを活用したText-to-UI機能など、拡張パターンもご紹介します。
+さらに発展的な内容として、スタイリングの実装や生成AIを活用したText-to-UI機能など、拡張パターンもご紹介します。
 
 最後に、今回学んだ内容を日常の開発にどう活かせるかをまとめます。
 
@@ -171,17 +168,18 @@ layout: center
 - TypeScript/JavaScript向けのスキーマバリデーションライブラリ
 - **型安全性 × 軽量**
   - スキーマからTypeScript型を自動推論
-  - 最小700バイトから組み込み可能
+  - バンドルサイズが小さく、最小700バイトから組み込み可能
 - **豊富な機能**
-  - ビルトインアクション（`minLength`, `email`など）
-  - パイプラインAPIによる柔軟な合成
-  - 非同期バリデーションとi18n対応
+  - ビルトインのバリデーション（`v.minLength`, `v.email`など）
+  - ビルトインの変換関数(`v.transform`, `v.toLowerCase`など)
+  - パイプラインAPIによる柔軟な合成(`v.pipe`)
 - **充実したエコシステム**
-  - `h3-valibot`: Nitro/h3ルート向け
-  - `conform-to-valibot`: Reactフォーム連携
-  - `valibot-codemod`: 移行支援
+  - Nest.js, Drizzle ORM, AI SDK, conformなど
+
 
 </v-clicks>
+
+<img src="/valibot-icon.png" class="absolute top-5 right-12 w-50">
 
 <!--
 まず前提知識として、Valibotについて説明します。  
@@ -194,33 +192,38 @@ Valibotは、TypeScript/JavaScript向けのスキーマバリデーションラ�
 エコシステムも充実しており、Nitro/h3ルート向けのバリデーション、Reactフォームとの連携、移行支援ツールなどが提供されています。
 -->
 
-  - **基本的な使い方**  
-    ```ts
-    import * as v from "valibot";
-  
-    // スキーマ定義
-    const imageSchema = v.object({
-      src: v.string(),
-      alt: v.optional(v.string()),
-    });
-  
-    // 型推論
-    type Image = v.InferOutput<typeof imageSchema>;
-    // { src: string; alt?: string; }
-  
-    // 実行時バリデーション
-    const result = v.parse(imageSchema, { src: "https://example.com/image.png" });
-    // { src: "https://example.com/image.png", alt: undefined }
-    ```
-  - **ポイント**  
-    - 型安全性とランタイムの安全性を同時に担保  
-    - スキーマをそのまま「UI定義データ」としても再利用可能  
+---
 
-7-2. Server-Driven UI
+# Valibot の基本的な使い方
 
-- サーバー側が「どの UI コンポーネントを、どのように配置・表示するか」をクライアントに指示し、クライアントは受け取った指示に従ってレンダリングするアーキテクチャパターン
-- Airbnb が2021年に提唱した概念で、Ghostと呼ばれる自社フレームワークを紹介した
+
+```ts{all|3-7|9-11|12-15|all}
+import * as v from "valibot"
+
+// スキーマ定義
+const imageSchema = v.object({
+  src: v.string(),
+  alt: v.optional(v.string()),
+})
+
+// 型推論
+type Image = v.InferOutput<typeof imageSchema>
+// => { src: string alt?: string }
+
+// 実行時バリデーション
+const result = v.parse(imageSchema, { src: "https://example.com/image.png" })
+// => { src: "https://example.com/image.png", alt: undefined }
+```
+
+---
+
+# Server-Driven UI
+
+- サーバー側が「**どの UI コンポーネントを、どのように配置・表示するか**」をクライアントに指示し、クライアントは受け取った指示に従ってレンダリングするアーキテクチャパターン
+- Airbnb が2021年に提唱した概念 [^1] で、**Ghost**と呼ばれる自社フレームワークを紹介した
 - 従来のClient-Driven UIでは、クライアント（Web／iOS／Android）が表示ロジックを実装し、サーバーはデータのみを返していた。しかしこの方式だと、各プラットフォーム間で UI 表示ロジックの重複や乖離が発生しやすく、アプリのアップデートが頻発する問題があった
+
+[^1]:[A Deep Dive into Airbnb’s Server-Driven UI System - The Airbnb Tech Blog](https://medium.com/airbnb-engineering/a-deep-dive-into-airbnbs-server-driven-ui-system-842244c5f5)
 
 <!-- 
 
@@ -228,11 +231,17 @@ Valibotは、TypeScript/JavaScript向けのスキーマバリデーションラ�
 
 -->
 
-7-3. Server-Driven UIの概念図
+---
+layout: image
+image: /sdui.png
+backgroundSize: contain
+---
 
-![Server-Driven UIの概念図](/2.svg)
+---
 
-7-4. 今回のノーコードプラットフォームでの動的UI構築
+# 今回のノーコードWebサイトビルダーでの動的UI構築
+
+<v-clicks>
 
 - 今回はUIの構成要素を Block と呼び、 Block を組み合わせてページを構成する
 - ユーザーはエディタ上でブロックを追加・削除・編集でき、リアルタイムでプレビューできる
@@ -240,13 +249,13 @@ Valibotは、TypeScript/JavaScript向けのスキーマバリデーションラ�
 
 → これらをValibotでスキーマ化し、型安全に実装する
 
-1. **スキーマ＝コンポーネント定義**: ブロックごとのプロパティの型・必須チェックを一元管理  
-2. **TypeScript型推論**: UIレンダラーやエディタ側で補完が効く  
-3. **実行時バリデーション**: 型だけでなく実行時の検証もできる
+</v-clicks>
 
-7-5. Valibot Schema Driven UIの概念図
+---
 
-WIP
+# Valibot Schema Driven UI
+
+<img src="/vsdui.png" class="object-contain">
 
 <!-- このスキーマで定義したブロックは、対応する React コンポーネントに変換され UI に反映されます。以下のフローでデータを保存・ UI レンダリングを行います：
 
@@ -261,13 +270,8 @@ WIP
 
 # デモ
 
-<div class="grid grid-cols-2 gap-4">
-<div>
+<img src="/1.gif" class="object-contain">
 
-![ノーコードビルダーデモ](/1.gif)
-
-</div>
-</div>
 
 <!--
 今回実装するノーコードWebサイトビルダーのデモをお見せします。
@@ -283,97 +287,169 @@ WIP
 なお、これから紹介するコード例では、エディタのスタイリングに関するコードは除外し、本質的なロジックに焦点を当てて説明します。実際のソースコードはGitHubで公開していますので、よろしければ参照してください。
 -->
 
+---
+layout: center
+---
 
-8. **基本アーキテクチャ設計**
+# 基本アーキテクチャ設計
 
-8-1. 前提
+---
 
-- 今回はReactを使用
-- ソースコード全体は紹介せず、重要な部分を抜粋して説明します。スタイリングも省略します
+# 前提
+
+- 今回はReactとNext.jsを使用
+- ソースコード全体は紹介せず、重要な部分のみ抜粋して説明します。スタイリングも省略します
 - ソースコード: https://github.com/MH4GF/valibot-schema-driven-ui
 
-8-2. スキーマ設計
+---
 
-```ts
-import * as v from "valibot";
+# Valibotスキーマ設計
 
+```ts{all|1-2|4-17|19-20|all}
 // ブロックの共通情報を持つスキーマ。全てのブロックはIDを持つ
 const baseBlockSchema = v.object({ id: v.string() })
 
-// ボタンブロックが持つプロパティを定義
+// 今回はボタン・パラグラフ・画像のブロックを定義
+// それぞれのブロックが持つプロパティを定義
 const buttonSchema = v.intersect([
   baseBlockSchema,
   v.object({ type: v.literal("button"), text: string() }),
 ])
-
-const paragraphSchema = intersect([
+const paragraphSchema = v.intersect([
   baseBlockSchema,
-  object({ type: literal("paragraph"), text: string() }),
-]);
-
-const imageSchema = intersect([
+  v.object({ type: v.literal("paragraph"), text: v.string() }),
+])
+const imageSchema = v.intersect([
   baseBlockSchema,
-  object({ type: literal("image"), src: string(), alt: optional(string()) }),
-]);
+  v.object({ type: v.literal("image"), src: v.string(), alt: v.optional(v.string()) }),
+])
 
 // 全ブロックタイプのユニオン型
-const blockSchema = union([buttonSchema, paragraphSchema, imageSchema]);
-
-// ページレイアウトのスキーマ
-export const pageSchema = object({
-  name: string(),
-  blocks: record(string(), blockSchema), // IDによる全ブロックのマップ
-});
-
-// Valibotスキーマから型を定義
-export type Page = InferOutput<typeof pageSchema>;
-export type Block = InferOutput<typeof blockSchema>;
-export type Button = InferOutput<typeof buttonSchema>;
-export type Paragraph = InferOutput<typeof paragraphSchema>;
-export type Image = InferOutput<typeof imageSchema>;
+const blockSchema = v.union([buttonSchema, paragraphSchema, imageSchema])
 ```
 
-8-3. Intersection型とUnion型
+---
 
-- **Intersection型**: 複数のスキーマを組み合わせて新しいスキーマを作成
-  - 例: `baseBlockSchema`と`buttonSchema`を組み合わせて、ボタンブロックのスキーマを定義
+# Valibotスキーマ設計
+
+```ts
+// ページは複数のブロックを持つ
+export const pageSchema = v.object({
+  name: v.string(),
+  blocks: v.record(v.string(), blockSchema), // IDによる全ブロックのマップ
+})
+
+// ValibotスキーマからTypeScript型を定義
+export type Page = v.InferOutput<typeof pageSchema>
+export type Block = v.InferOutput<typeof blockSchema>
+export type Button = v.InferOutput<typeof buttonSchema>
+export type Paragraph = v.InferOutput<typeof paragraphSchema>
+export type Image = v.InferOutput<typeof imageSchema>
+```
+
+---
+
+# Intersection型とUnion型
+
+- **Intersection型**: `v.intersect()` / `type A = B & C`
+  - 複数のスキーマを組み合わせて新しいスキーマを作成
+  - 例: `baseBlockSchema`と`v.object`を組み合わせて、ボタンブロックのスキーマを定義
   - 共通プロパティと固有プロパティを分離して定義
-- **Union型**: 複数のスキーマのいずれかにマッチするスキーマを定義
+- **Union型**: `v.union()` / `type A = B | C`
+  - 複数のスキーマのいずれかにマッチするスキーマを定義
   - 例: `buttonSchema`、`paragraphSchema`、`imageSchema`を組み合わせて、全ブロックタイプのスキーマを定義
   - 異なるブロックタイプを一つのスキーマで扱い、絞り込み(Type Narrowing)を行う
 
-9. **実装パターン**
+---
+layout: center
+---
 
-9-1. **ブロックスキーマからコンポーネントへの変換**
+# 実装パターン
+
+---
+
+# エディタの実装
+
+<img src="/layout-1.png" class="object-contain">
+
+---
+
+# エディタの実装
+
+<img src="/layout-2.png" class="object-contain">
+
+---
+
+# エディタの実装 - Editorコンポーネント
+
+<img src="/layout-2.png" class="object-contain absolute top-6 right-6 w-50 z-10">
+
+```tsx{all|2-3|5-11|13-22|all}
+const Editor: FC = () => {
+  // ページの状態管理
+  const [page, setPage] = useState<Page>({ name: "My Page", blocks: {} })
+  const [selectedBlockId, setSelectedBlockId] = useState<string | null>(null)
+  // ブロックの追加と編集
+  const addBlock = (block: Block) => {
+    setPage((prev) => ({ ...prev, blocks: { ...prev.blocks, [block.id]: block } }))
+  }
+  const updateBlock = (block: Block) => {
+    setPage((prev) => ({ ...prev, blocks: { ...prev.blocks, [block.id]: block } }))
+  }
+
+  return (
+    <div>
+      <div>
+        <AddBlockPanel addBlock={addBlock} />
+        <BlockTree page={page} selectedBlockId={selectedBlockId} setSelectedBlockId={setSelectedBlockId} />
+      </div>
+      <PageRenderer page={page} />
+      <BlockFormPanel block={page.blocks[selectedBlockId]} updateBlock={updateBlock} />
+    </div>
+  )
+}
+```
+
+---
+
+# エディタの実装 - ブロックのレンダリング
+
+<img src="/layout-2.png" class="object-contain absolute top-6 right-6 w-50 z-10">
+
+- ブロックのオブジェクトを受け取り、プロパティをレンダリングする
+- 今回のブロックはかなりプリミティブなUIコンポーネント
 
 ```tsx
-import type { FC } from "react";
-import type { Button, Paragraph, Image, Block } from "../schema";
-
 const ButtonBlock: FC<{ block: Button }> = ({ block }) => (
   <button type="button">{block.text}</button>
-);
-
+)
 const ParagraphBlock: FC<{ block: Paragraph }> = ({ block }) => (
   <p>{block.text}</p>
-);
-
+)
 const ImageBlock: FC<{ block: Image }> = ({ block }) => (
   <img src={block.src} alt={block.alt || ""} />
-);
+)
+```
 
+---
+
+# エディタの実装 - PageRenderer
+
+<img src="/layout-2.png" class="object-contain absolute top-6 right-6 w-50 z-10">
+
+- ブロックのtypeで絞り込み、各ブロックのコンポーネントを呼び出す
+
+```tsx
 const BlockRenderer: FC<{ block: Block }> = ({ block }) => {
   switch (block.type) {
     case "button":
-      return <ButtonBlock key={block.id} block={block} />;
+      return <ButtonBlock key={block.id} block={block} />
     case "paragraph":
-      return <ParagraphBlock key={block.id} block={block} />;
+      return <ParagraphBlock key={block.id} block={block} />
     case "image":
-      return <ImageBlock key={block.id} block={block} />;
-    default:
-      return null;
+      return <ImageBlock key={block.id} block={block} />
   }
-};
+}
 
 const PageRenderer: FC<{ page: Page }> = ({ page }) => {
   return (
@@ -383,106 +459,563 @@ const PageRenderer: FC<{ page: Page }> = ({ page }) => {
         <BlockRenderer key={block.id} block={block} />
       ))}
     </div>
-  );
-};
+  )
+}
 ```
 
 <!-- かなりプリミティブなUIを定義した 
 switchで分岐し、型の絞り込みを行っている。これにより各ブロックのコンポーネントでは特定のプロパティにアクセスできるようになる
 -->
 
-9-2. **エディタの実装**
+
+
+---
+
+# エディタの実装 - AddBlockPanel
+
+<img src="/layout-2.png" class="object-contain absolute top-6 right-6 w-50 z-10">
+
+- ボタンを押すとブロックを追加できる
 
 ```tsx
-const Editor = () => {
-  const [page, setPage] = useState<Page>({
-    name: "My Page",
-    blocks: {},
-  });
+const AddBlockPanel: FC<{ addBlock: (block: Block) => void }> = ({ addBlock }) => {
+  const addButton = () => {
+    addBlock({ id: crypto.randomUUID(), type: "button", text: "Click me" })
+  }
+  const addParagraph = () => {...} // 省略
+  const addImage = () => {...} // 省略
 
-  const addBlock = (type: Block["type"]) => {
-    switch (type) {
-      case "button":
-        const id = crypto.randomUUID();
-        setPage((prev) => ({
-          ...prev,
-          blocks: {
-            ...prev.blocks,
-            [id]: { id: id, type, text: "" },
-          },
-        }));
-        return;
+  return (
+    <aside>
+      <button onClick={() => addButton()}>Add Button</button>
+      <button onClick={() => addParagraph()}>Add Paragraph</button>
+      <button onClick={() => addImage()}>Add Image</button>
+    </aside>
+  )
+}
+```
 
-      ... 省略 ...
+---
 
-    }
-    }
-  };
+# エディタの実装 - BlockFormPanel
+
+<img src="/layout-2.png" class="object-contain absolute top-6 right-6 w-50 z-10">
+
+- ブロックのtypeに応じて、フォームの内容を変える
+
+```tsx{all|3-4|all}
+const BlockFormPanel: FC<{ block: Block, updateBlock: (block: Block) => void }> = ({ block, updateBlock }) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    const newBlock = v.parse(blockSchema, { ...block, [name]: value })
+    updateBlock(newBlock)
+  }
 
   return (
     <div>
-      <aside>
-        <button onClick={() => addBlock("button")}>Add Button</button>
-        <button onClick={() => addBlock("paragraph")}>Add Paragraph</button>
-        <button onClick={() => addBlock("image")}>Add Image</button>
-      </aside>
-
-      <PageRenderer page={page} />
+      {block.type === "button" && (
+        <div>
+          <label htmlFor="text">Button text</label>
+          <input type="text" name="text" value={block.text} onChange={handleChange} />
+        </div>
+      )}
+      {block.type === "paragraph" && (...省略...)}
+      {block.type === "image" && (...省略...)}
     </div>
-  );
-};
+  )
+}
 ```
 
-  - 状態管理
-  - 双方向バインディング
-  - バリデーション処理
-- **データの永続化**
-  - スキーマと JSON の変換
-  - クエリパラメータによる状態保存
+---
 
-10. **拡張パターン**
-    - **親子関係の表現**
-      - ネストされた UI の扱い方
-      - フラットデータでの階層管理
-    - **スタイリングの実装**
-      - スタイルのスキーマ化
-      - 型安全なスタイル管理
-    - **JavaScriptの実行(ローコード機能の追加)**
-      - スキーマでのイベントハンドラ定義
-      - 安全なJavaScript実行環境
-    - **LLMを利用したText-to-UI機能**
-      - Vercel AI SDKとValibotスキーマを連携
-      - チャットUIとStructured Outputによる出力
+# データの永続化
 
-### 結論
+- 今回はページのデータをURLのクエリパラメータに保存
 
-11. **実践と応用**
-    - **まとめ: Schema Driven UI の利点**
-      - 型安全性
-      - 拡張性
-      - 開発効率
-    - **参考資料と次のステップ**
+```tsx{2-13}
+const Editor: FC = () => {
+  // クエリパラメータからページのデータを読み込む
+  const [page, setPage] = useState<Page>(() => {
+    const savedData = searchParams.data
+    if (savedData) return parse(pageSchema, JSON.parse(decodeURIComponent(savedData)))
+      
+    return { name: "New Page", blocks: {} }
+  })
+  // ページのデータをクエリパラメータに保存
+  useEffect(() => {
+    const queryData = encodeURIComponent(JSON.stringify(page))
+    window.history.pushState({}, "", `?data=${queryData}`);
+  }, [page])
 
-## プレゼンテーション全体の流れ
+  const [selectedBlockId, setSelectedBlockId] = useState<string | null>(null)
+  const addBlock = (block: Block) => {
+    setPage((prev) => ({ ...prev, blocks: { ...prev.blocks, [block.id]: block } }))
+  }
+  const updateBlock = (block: Block) => {
+    setPage((prev) => ({ ...prev, blocks: { ...prev.blocks, [block.id]: block } }))
+  }
 
-1. **導入**: ノーコードプラットフォームの概念と背景
-2. **問題提起**: どうやって実現されているのか？という技術的疑問
-3. **提案**: Valibot Schema Driven UIによる型安全なアプローチ
-4. **実装**: 基本から応用までの具体的な実装パターン
-5. **発展**: 拡張機能や応用例の紹介
-6. **結論**: 利点のまとめと次のステップ
+  return (
+    <div>
+      <AddBlockPanel addBlock={addBlock} />
+      <PageRenderer page={page} />
+      <BlockFormPanel block={page.blocks[selectedBlockId]} updateBlock={updateBlock} />
+    </div>
+  )
+}
+```
 
-## 主要なポイント
+<!-- 今回はクエリパラメータに保存 -->
 
-- **型安全性**: TypeScriptとValibotによる型安全なUI構築
-- **拡張性**: スキーマ駆動によるコンポーネント設計の柔軟性
-- **実用性**: 実際の開発で応用できる実装パターン
-- **最新技術**: LLMとの連携による可能性の広がり
+---
+layout: center
+---
+
+# 拡張パターン
+
+---
+
+# 拡張パターン
+
+- 親子関係・UIのネストの表現
+- スタイリング
+- JavaScriptの実行・ローコード機能の追加
+- 生成AIを利用したText-to-UI
+
+---
+
+# 親子関係・UIのネストの表現
+
+- 現在のblocksはフラットなデータ構造で、ブロック間の階層構造が表現できない
+- `<div><p>Paragraph</p></div>` のようなネストをどのように表現するか？
+
+<img src="/nesting.png" />
+
+---
+
+# 参考: React(JSX)のデータ構造
+
+- JSX をトランスパイルし実行すると、戻り値として右のようなプレーンオブジェクトが返る
+- childrenは `ReactNode` 型が入り、0 個ならundefined、1 個なら単体、複数なら配列
+
+<div class="grid grid-cols-2 gap-4">
+
+```tsx
+function Greeting({ name }) {
+  return (
+    <div className="card">
+      <h1>Hello, {name}</h1>
+    </div>
+  )
+}
+
+const result = Greeting("World")
+console.dir(result, { depth: null })
+```
+
+```ts
+{
+  '$$typeof': Symbol(react.transitional.element),
+  type: 'div',
+  key: null,
+  props: {
+    className: 'card',
+    children: {
+      '$$typeof': Symbol(react.transitional.element),
+      type: 'h1',
+      key: null,
+      props: { children: [ 'Hello, ', 'World' ] },
+      _owner: null,
+      _store: {}
+    }
+  },
+  _owner: null,
+  _store: {}
+}
+```
+
+</div>
+
+---
+
+# 親子関係・UIのネストの表現
+
+- blockのプロパティとして `children: Block[]` を追加すると良い？
+
+```tsx
+const divSchema = v.object({
+  type: v.literal("div"),
+  children: v.array(blockSchema),
+})
+```
+
+- 🙆‍♂️ Reactコンポーネントでレンダリングする際の構造に沿う
+- 🙅‍♂️ ブロックデータの検索に再帰処理が必要になり、更新・追加・削除が煩雑になる
+- 🙅‍♂️ 将来的に並び替え機能を追加する際に、構造を保ちながら位置を更新する際の変更量が多くなる
+
+---
+
+# 親子関係・UIのネストの表現
+
+- baseBlockSchema に `parentId` プロパティを追加し、ブロックが親ブロックを参照できるようにし、どのブロックに所属するかを明示できるようにする 
+
+```ts{all|3|6-10}
+const baseBlockSchema = v.object({
+  id: v.string(),
+  parentId: v.optional(v.string()),
+})
+
+// divブロックもこのタイミングで追加
+const divBlockSchema = v.intersect([
+  baseBlockSchema,
+  v.object({ type: v.literal("div") }),
+])
+```
+
+---
+
+# 親子関係・UIのネストの表現
+
+- レンダリングの前にだけブロックをReactの階層構造に変換する
+
+```tsx
+type BlockWithChildren = Block & { children: BlockWithChildren[] }
+
+const buildHierarchy = (blocks: Block[]): BlockWithChildren[] => {
+  const map = new Map<string, BlockWithChildren>()
+
+  // 各ブロックをchildrenプロパティ付きで初期化
+  blocks.forEach((block) => {
+    map.set(block.id, { ...block, children: [] })
+  })
+
+  const result: BlockWithChildren[] = []
+
+  // 親子構造を構築
+  blocks.forEach((block) => {
+    const parentId = block.parentId
+    if (parentId && map.has(parentId)) {
+      map.get(parentId)!.children.push(map.get(block.id)!)
+    } else {
+      result.push(map.get(block.id)!)
+    }
+  })
+
+  return result
+}
+```
+
+---
+
+# 親子関係・UIのネストの表現
+
+
+```tsx{all|1-4|12-16}
+const DivBlock: FC<{ block: DivBlock, children?: ReactNode }> = ({ block, children }) => (
+  <div>{children}</div>
+)
+
+export const BlockRenderer: FC<Props> = ({ block }) => {
+  switch (block.type) {
+    
+    // ~~ 他のブロックのレンダリング処理 ~~
+
+    case "div":
+      return (
+        <DivBlock key={block.id} block={block}>
+          {block.children.map((child) => (
+            <BlockRenderer key={child.id} block={child} />
+          ))}
+        </DivBlock>
+      )
+  }
+}
+```
+
+---
+
+# 親子関係・UIのネストの表現
+
+- ブロックの追加時に、選択中のブロックに所属させるようにする
+
+```tsx
+const addBlock = (block: Block) => {
+  const parentIdObj = selectedBlockId ? { parentId: selectedBlockId } : {} // 選択中だったら設定
+  setPage((prev) => ({ ...prev, blocks: { ...prev.blocks, [block.id]: { ...block, ...parentIdObj } } }))
+}
+```
+
+- フラットな構造のままなので、更新処理は変更が不要
+
+---
+
+# 親子関係・UIのネストの表現
+
+- 🙆‍♂️ `page.blocks[blockId]` でブロックの検索が可能になり、フラットな構造のままのため更新・追加・削除が容易
+- 🙆‍♂️ 並び替え機能を追加するとしても、親ブロックの `order` プロパティの値を更新するだけで良い
+
+---
+layout: center
+---
+
+# スタイリングの実装
+
+---
+
+# スタイリングの実装
+
+- スタイルをスキーマで定義し、それをブロックのスキーマに追加する
+
+```ts{all|1-5|12}
+const stylesSchema = v.object({
+  color: v.optional(v.string()),
+  backgroundColor: v.optional(v.string()),
+  fontSize: v.optional(v.string()),
+})
+
+// ベースブロックのスキーマに styles プロパティを追加
+const baseBlockSchema = v.object({
+  id: v.string(),
+  parentId: v.optional(v.string()),
+  name: v.string(),
+  styles: stylesSchema, // スタイルプロパティの追加
+})
+```
+
+---
+
+# スタイリングの実装
+
+- 各ブロックのUIコンポーネントでスタイルを適用する
+
+```tsx{all|2}
+const ButtonBlock: FC<BlockProps<Button>> = ({ block }) => (
+  <button type="button" style={block.styles}>
+    {block.text}
+  </button>
+)
+```
+
+---
+
+# スタイリングの実装
+
+- ユーザーが自由にスタイルを設定できる柔軟な仕組みを提供できる
+- ただし、セキュリティ面（XSSなど）には注意が必要
+- 実際のシステムでは、ユーザー入力のスタイル値をサニタイズ・検証することが重要
+  - color や backgroundColor に無効な値や危険なコードが入っていないか検証
+  - HTML/CSSの仕様に沿った安全な値のみ許可
+
+<!-- この実装はユーザーが自由にスタイルを設定できる柔軟な仕組みを提供しますが、セキュリティ面に関しては考慮が不足していることに注意してください。実際のシステムに導入する場合は、ユーザーが入力したスタイルデータに対して適切なサニタイズ処理を施し、不正な入力や潜在的な XSS 攻撃を防ぐ対策が必要です。
+
+たとえば、color や backgroundColor に無効な値や危険なコードが入っていないかを検証し、危険な文字列が含まれている場合はフィルタリングすることが重要です。また、HTML や CSS の仕様に沿った安全な値を使用するようにする必要があります。 -->
 
 
 ---
 layout: center
-class: text-center
+---
+
+# JavaScriptの実行(ローコード機能の追加)
+
+---
+
+# JavaScriptの実行(ローコード機能の追加)
+
+- ボタンの onClick イベントに任意の JavaScript アクションを設定できる機能を実装する
+- ユーザーがエディタ上で JavaScript コードを記述し、ボタン押下時に実行
+- 直接的な JavaScript 実行はセキュリティリスクがあるため、サンドボックス環境で実行する必要がある
+- 今回は iframe の sandbox 属性を活用し、外部とのやりとりを制限してリスクを最小限に抑える
+
+<!-- この機能では、ユーザーが簡単にボタンの onClick イベントにアクションを設定できるようにします。具体的には、エディタ上で任意の JavaScript コードを記述し、ボタンがクリックされたときにそのコードが実行される仕組みを実装します。
+
+重要な点は、直接的な JavaScript の実行にはセキュリティリスクが伴うため、サンドボックス環境でコードを実行する必要があることです。今回は iframe を使用し、JavaScript コードを安全に分離された環境で実行する方法を採用します。 iframe 要素の sandbox 属性を活用して外部とのやりとりを制限し、リスクを最小限に抑えます。 -->
+
+---
+
+# JavaScriptの実行(ローコード機能の追加)
+
+```ts{all|6}
+const buttonSchema = v.intersect([
+  baseBlockSchema,
+  v.object({
+    type: v.literal("button"),
+    text: v.string(),
+    onClick: v.string(), // クリック時に実行される JavaScript コード
+  }),
+])
+```
+
+---
+layout: two-cols-header
+---
+
+# iframe によるサンドボックス化された JavaScript 実行
+
+<style>
+  .two-cols-header {
+    gap: 1rem;
+  }
+
+  code {
+    font-size: 10px!important;
+  }
+</style>
+
+::left::
+```tsx{all|4-13|15-21|all}
+export const ButtonBlock: FC<{ block: Button }> = ({ block }) => {
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+
+  useEffect(() => {
+    const iframeWindow = iframeRef.current?.contentWindow
+
+    if (iframeWindow) {
+      iframeWindow.postMessage(
+        { type: "LOAD_SCRIPT", script: block.onClick },
+        "*"
+      )
+    }
+  }, [iframeRef.current, block.onClick])
+
+  const handleClick = useCallback(() => {
+    const iframeWindow = iframeRef.current?.contentWindow
+    if (iframeWindow) {
+      iframeWindow.postMessage({ type: "EXECUTE_SCRIPT" }, "*")
+    }
+  }, [])
+```
+
+::right::
+
+```tsx{all|9-10|all}
+  const srcDoc = `
+    <script>
+      let script = ''
+      window.addEventListener('message', (event) => {
+        if (event.data.type === 'LOAD_SCRIPT') {
+          script = event.data.script
+        } else if (event.data.type === 'EXECUTE_SCRIPT') {
+          try {
+            const func = new Function(script)
+            func()
+          } catch (error) {
+            console.error('Script execution error:', error)
+          }
+        }
+      })
+    </script>
+  `
+  return (
+    ...ButtonBlockの既存実装、省略...
+    <iframe ref={iframeRef} sandbox="allow-scripts allow-modals" srcDoc={srcDoc} />
+  )
+}
+```
+
+---
+
+# iframe によるサンドボックス化された JavaScript 実行
+
+- allow-scripts: JavaScript のみを許可し、他の危険な操作（フォーム送信やポップアップの生成など）は一切禁止
+- allow-modals: モーダルウィンドウの生成を許可し、ユーザーによる操作を受け付けることができます。具体的には `alert('hello')` のようなコードが実行可能
+- 実際のシステムでは JavaScript コードのサニタイズ処理や、CSPの設定も必要
+
+---
+layout: center
+---
+
+# 生成AIを利用したText-to-UI機能
+
+---
+
+# 生成AIを利用したText-to-UI機能
+
+- OpenAIなどのAIモデルでは、JSON Schemaに準拠したレスポンスを生成できるStructured Outputという機能がある
+- ValibotはスキーマをJSON Schemaに変換できるため、AIにValibotスキーマに準拠したページを生成させる
+- 今回はVercel AI SDK, OpenAI APIを利用
+
+---
+
+# 生成AIを利用したText-to-UI機能
+
+```ts{all|13|14|all}
+import { openai } from "@ai-sdk/openai"
+import { streamObject } from "ai"
+import { pageSchema } from "../../schema"
+import { valibotSchema } from "@ai-sdk/valibot"
+
+export const maxDuration = 30
+
+export async function POST(req: Request) {
+  const { prompt } = await req.json()
+
+  const result = streamObject({
+    model: openai("gpt-4o"),
+    schema: valibotSchema(pageSchema),
+    system: "You are a UI block generator. Create a complete page layout based on the user's request.",
+    prompt,
+  })
+
+  return result.toTextStreamResponse()
+}
+```
+
+---
+
+# 生成AIを利用したText-to-UI機能
+
+```tsx{all|2-5|6-13|all}
+export const ChatPopup: FC<{ setPage: (page: Page) => void }> = ({ setPage }) => {
+  const { object, error, submit, isLoading } = useObject({
+    api: "/api/chat",
+    schema: valibotSchema(pageSchema),
+  })
+
+  useEffect(() => {
+    const result = v.safeParse(pageSchema, object)
+
+    if (result.success) {
+      setPage(result.output)
+    }
+  }, [object, setPage])
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => submit({ prompt: e.target.value })
+
+  return (
+    <form onSubmit={onSubmit}>
+      <input disabled={isLoading} />
+      <button type="submit" disabled={isLoading}>Submit</button>
+    </form>
+  )
+}
+```
+
+---
+layout: center
+---
+
+# まとめと展望
+
+---
+
+# 本発表のまとめ
+
+- **Valibot Schema Driven UI とは**：UI ブロックを Valibot スキーマで型安全に定義し、そのままバリデーションと型推論を両立させる設計手法
+- **基礎**：フォーム入力 → スキーマ変換 → React でコンポーネントをレンダリングする流れを解説し、編集を即時プレビューできるエディタを実装
+- **発展**：`parentId` による親子構造の定義、スタイリング・ローコード機能・生成 AI を使った Text-to-UI といった拡張例を紹介
+
+---
+
+# その他の拡張
+
+- より多くのブロックのサポート
+- 複数ページのサポートや、アンカーリンクのサポート
+- バックエンド API とのデータ連携
+- ドラッグ&ドロップでのブロックの順序変更や、バウンディングボックスでのサイズ変更などのエディタの改善
+- Figma や Notion のような、複数人でリアルタイムに共同編集できる機能のサポート
+
+---
+layout: center
 ---
 
 # Thank you for listening!
