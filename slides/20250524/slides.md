@@ -36,11 +36,6 @@ TSKaigi 2025 - 2025/05/24 @MH4GF
 <img src="https://avatars.githubusercontent.com/u/31152321?v=4" class="rounded-full w-50 h-50 mx-auto">
 </div>
 
----
-layout: image
-image: /liam-erd.gif
----
-
 
 ---
 
@@ -131,7 +126,7 @@ image: /liam-erd.gif
 3. **スキーマ定義とアーキテクチャ**
 4. **基本機能の実装**
 5. **拡張パターン**
-6. **まとめと展望**
+6. **まとめとおまけ**
 
 
 <!--
@@ -156,7 +151,8 @@ image: /liam-erd.gif
 
 # デモ
 
-<iframe src="http://localhost:3000" class="scaled-iframe"></iframe>
+<!-- <iframe src="http://localhost:3000" class="scaled-iframe"></iframe> -->
+<img src="/demo-vsdui.gif" class="h-[89%]" />
 
 
 <!--
@@ -1057,7 +1053,7 @@ export const ChatPopup: FC<{ setPage: (page: Page) => void }> = ({ setPage }) =>
 layout: center
 ---
 
-# まとめと展望
+# まとめとおまけ
 
 ---
 
@@ -1069,13 +1065,27 @@ layout: center
 
 ---
 
-# その他の拡張
+# 今回のノーコードWebサイトビルダーの考察
 
-- より多くのブロックのサポート
-- 複数ページのサポートや、アンカーリンクのサポート
-- バックエンド API とのデータ連携
-- ドラッグ&ドロップでのブロックの順序変更や、バウンディングボックスでのサイズ変更などのエディタの改善
-- Figma や Notion のような、複数人でリアルタイムに共同編集できる機能のサポート
+<style>
+  ul {
+    font-size: 17px;
+  }
+</style>
+
+- ブロックの単位 === ノーコードの制約の表現
+  - プリミティブなブロック(p, button, img): カスタマイズ性👌 学習コスト❌ 複雑度❌
+  - 組み合わせ済みブロック(Hero, ProfileCard, List): カスタマイズ性❌ 学習コスト👌 複雑度👌
+  - 突き詰めるとDOMの再実装となる
+- 生成AIによるText-to-UI
+  - v0などのText-to-Codeと違い生成対象はJSON Schema形式のスキーマであり、制約の中で高速にアプリ構築できるのは強み
+  - スキーマが複雑化した際に実用か？
+  - コーディングエージェントのようなプロンプトチューニング・ツール実装・HITL(Human in the Loop)などが必要
+- 拡張アイデア
+  - より多くのブロックのサポート
+  - テンプレートエンジン・各種パラメータのサポート
+  - バックエンド API とのデータ連携
+  - ドラッグ&ドロップでの順序変更や、バウンディングボックスでのサイズ変更などのエディタの改善
 
 ---
 layout: center
