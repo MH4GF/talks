@@ -40,8 +40,20 @@ h1 {
   font-size: 1.75rem;
   line-height: 2.5rem;
   font-weight: 800;
+  margin-bottom: 0.5rem;
 }
 
 hr.footnotes-sep {
   display: none;
+}
+
+.scaled-iframe {
+  transform: scale(0.8);
+  transform-origin: top left;
+  width: calc(100% / 0.8);
+  height: calc(100% / 0.9);
+}
+
+.two-cols-header {
+  gap: 1rem;
 }

@@ -126,10 +126,10 @@ image: /liam-erd.gif
 # アジェンダ
 
 
-1. **Valibot Schema Driven UI の基本概念**
-2. **デモ**
+1. **デモ**
+2. **Valibot Schema Driven UI の基本概念**
 3. **スキーマ定義とアーキテクチャ**
-4. **実装パターン**
+4. **基本機能の実装**
 5. **拡張パターン**
 6. **まとめと展望**
 
@@ -150,6 +150,27 @@ image: /liam-erd.gif
 最後に、今回学んだ内容を日常の開発にどう活かせるかをまとめます。
 
 基礎から応用へと順を追って進めていきますので、ぜひ最後までお付き合いください。
+-->
+
+---
+
+# デモ
+
+<iframe src="http://localhost:3000" class="scaled-iframe"></iframe>
+
+
+<!--
+今回実装するノーコードWebサイトビルダーのデモをお見せします。
+
+左ペインでブロックを追加・編集・削除し、結果のプレビューがリアルタイムで右ペインに表示されるようなビジュアルエディタを実装しています。
+
+ヘッダーにはプレビュー画面への導線があり、プレビュー画面ではユーザーが作成したアプリケーションだけを閲覧することができます。
+
+この機能を実現するためには、UIコンポーネントをスキーマで表現し、そのスキーマを編集できるインターフェースと、スキーマからUIを生成する仕組みが必要になります。
+
+これからの発表では、この機能を型安全に実装する方法について、詳しく説明していきます。実際のコードを見ながら、スキーマ駆動UIの考え方を理解していきましょう。
+
+なお、これから紹介するコード例では、エディタのスタイリングに関するコードは除外し、本質的なロジックに焦点を当てて説明します。実際のソースコードはGitHubで公開していますので、よろしければ参照してください。
 -->
 
 
@@ -267,27 +288,6 @@ backgroundSize: contain
 -->
 
 ---
-
-# デモ
-
-<img src="/1.gif" class="object-contain">
-
-
-<!--
-今回実装するノーコードWebサイトビルダーのデモをお見せします。
-
-左ペインでブロックを追加・編集・削除し、結果のプレビューがリアルタイムで右ペインに表示されるようなビジュアルエディタを実装しています。
-
-ヘッダーにはプレビュー画面への導線があり、プレビュー画面ではユーザーが作成したアプリケーションだけを閲覧することができます。
-
-この機能を実現するためには、UIコンポーネントをスキーマで表現し、そのスキーマを編集できるインターフェースと、スキーマからUIを生成する仕組みが必要になります。
-
-これからの発表では、この機能を型安全に実装する方法について、詳しく説明していきます。実際のコードを見ながら、スキーマ駆動UIの考え方を理解していきましょう。
-
-なお、これから紹介するコード例では、エディタのスタイリングに関するコードは除外し、本質的なロジックに焦点を当てて説明します。実際のソースコードはGitHubで公開していますので、よろしければ参照してください。
--->
-
----
 layout: center
 ---
 
@@ -300,6 +300,8 @@ layout: center
 - 今回はReactとNext.jsを使用
 - ソースコード全体は紹介せず、重要な部分のみ抜粋して説明します。スタイリングも省略します
 - ソースコード: https://github.com/MH4GF/valibot-schema-driven-ui
+- 本発表はテックブログ記事をベースにしています
+  - [Valibot Schema Driven UI - ユーザーがノーコードで自由に UI を組み立てられるエディタを Next.js と Valibot で構築する - ROUTE06 Tech Blog](https://tech.route06.co.jp/entry/2024/09/26/122250#fn:2)
 
 ---
 
@@ -364,7 +366,7 @@ export type Image = v.InferOutput<typeof imageSchema>
 layout: center
 ---
 
-# 実装パターン
+# 基本機能の実装
 
 ---
 
@@ -414,7 +416,7 @@ const Editor: FC = () => {
 
 # エディタの実装 - ブロックのレンダリング
 
-<img src="/layout-2.png" class="object-contain absolute top-6 right-6 w-50 z-10">
+<img src="/layout-3.png" class="object-contain absolute top-6 right-6 w-50 z-10">
 
 - ブロックのオブジェクトを受け取り、プロパティをレンダリングする
 - 今回のブロックはかなりプリミティブなUIコンポーネント
@@ -435,7 +437,7 @@ const ImageBlock: FC<{ block: Image }> = ({ block }) => (
 
 # エディタの実装 - PageRenderer
 
-<img src="/layout-2.png" class="object-contain absolute top-6 right-6 w-50 z-10">
+<img src="/layout-3.png" class="object-contain absolute top-6 right-6 w-50 z-10">
 
 - ブロックのtypeで絞り込み、各ブロックのコンポーネントを呼び出す
 
@@ -473,7 +475,7 @@ switchで分岐し、型の絞り込みを行っている。これにより各�
 
 # エディタの実装 - AddBlockPanel
 
-<img src="/layout-2.png" class="object-contain absolute top-6 right-6 w-50 z-10">
+<img src="/layout-4.png" class="object-contain absolute top-6 right-6 w-50 z-10">
 
 - ボタンを押すとブロックを追加できる
 
@@ -499,7 +501,7 @@ const AddBlockPanel: FC<{ addBlock: (block: Block) => void }> = ({ addBlock }) =
 
 # エディタの実装 - BlockFormPanel
 
-<img src="/layout-2.png" class="object-contain absolute top-6 right-6 w-50 z-10">
+<img src="/layout-5.png" class="object-contain absolute top-6 right-6 w-50 z-10">
 
 - ブロックのtypeに応じて、フォームの内容を変える
 
@@ -529,6 +531,8 @@ const BlockFormPanel: FC<{ block: Block, updateBlock: (block: Block) => void }> 
 ---
 
 # データの永続化
+
+<img src="/layout-2.png" class="object-contain absolute top-6 right-6 w-50 z-10">
 
 - 今回はページのデータをURLのクエリパラメータに保存
 
@@ -583,13 +587,41 @@ layout: center
 - 生成AIを利用したText-to-UI
 
 ---
+layout: two-cols-header
+---
 
 # 親子関係・UIのネストの表現
 
 - 現在のblocksはフラットなデータ構造で、ブロック間の階層構造が表現できない
 - `<div><p>Paragraph</p></div>` のようなネストをどのように表現するか？
 
-<img src="/nesting.png" />
+::left::
+
+<img src="/flat.png" />
+
+::right::
+
+```js
+{
+  blocks: {
+    "yG4_zM": {
+      id: "yG4_zM",
+      type: "button",
+      text: "Click me",
+    },
+    "10Eylt": {
+      id: "10Eylt",
+      type: "paragraph",
+      text: "Paragraph text",
+    },
+    "DT2ptl": {
+      id: "DT2ptl",
+      type: "paragraph",
+      text: "Paragraph text",
+    },
+  }
+}
+```
 
 ---
 
@@ -649,9 +681,9 @@ const divSchema = v.object({
 })
 ```
 
-- 🙆‍♂️ Reactコンポーネントでレンダリングする際の構造に沿う
-- 🙅‍♂️ ブロックデータの検索に再帰処理が必要になり、更新・追加・削除が煩雑になる
-- 🙅‍♂️ 将来的に並び替え機能を追加する際に、構造を保ちながら位置を更新する際の変更量が多くなる
+- 👌 Reactコンポーネントでレンダリングする際の構造に沿う
+- ❌ ブロックデータの検索に再帰処理が必要になり、更新・追加・削除が煩雑になる
+- ❌ 将来的に並び替え機能を追加する際に、構造を保ちながら位置を更新する際の変更量が多くなる
 
 ---
 
@@ -733,32 +765,54 @@ export const BlockRenderer: FC<Props> = ({ block }) => {
 ```
 
 ---
+layout: two-cols-header
+---
 
 # 親子関係・UIのネストの表現
+
+::left::
 
 - ブロックの追加時に、選択中のブロックに所属させるようにする
 
 ```tsx
 const addBlock = (block: Block) => {
-  const parentIdObj = selectedBlockId ? { parentId: selectedBlockId } : {} // 選択中だったら設定
-  setPage((prev) => ({ ...prev, blocks: { ...prev.blocks, [block.id]: { ...block, ...parentIdObj } } }))
+  // 選択中だったら設定
+  const parentIdObj = selectedBlockId ? { parentId: selectedBlockId } : {} 
+  setPage((prev) => ({ 
+    ...prev, 
+    blocks: { 
+      ...prev.blocks, 
+      [block.id]: { ...block, ...parentIdObj }
+    }
+  }))
 }
 ```
 
 - フラットな構造のままなので、更新処理は変更が不要
 
+::right::
+
+<img src="/nesting.gif" />
+
 ---
 
 # 親子関係・UIのネストの表現
 
-- 🙆‍♂️ `page.blocks[blockId]` でブロックの検索が可能になり、フラットな構造のままのため更新・追加・削除が容易
-- 🙆‍♂️ 並び替え機能を追加するとしても、親ブロックの `order` プロパティの値を更新するだけで良い
+
+- 👌 `page.blocks[blockId]` でブロックの検索が可能になり、フラットな構造のままのため更新・追加・削除が容易
+- 👌 並び替え機能を追加するとしても、親ブロックの `order` プロパティの値を更新するだけで良い
 
 ---
 layout: center
 ---
 
 # スタイリングの実装
+
+---
+
+# スタイリングの実装
+
+<img src="/styling.gif" class="h-[89%]" />
 
 ---
 
@@ -821,6 +875,12 @@ layout: center
 
 # JavaScriptの実行(ローコード機能の追加)
 
+<img src="/lowcode.gif" class="h-[89%]" />
+
+---
+
+# JavaScriptの実行(ローコード機能の追加)
+
 - ボタンの onClick イベントに任意の JavaScript アクションを設定できる機能を実装する
 - ユーザーがエディタ上で JavaScript コードを記述し、ボタン押下時に実行
 - 直接的な JavaScript 実行はセキュリティリスクがあるため、サンドボックス環境で実行する必要がある
@@ -852,10 +912,6 @@ layout: two-cols-header
 # iframe によるサンドボックス化された JavaScript 実行
 
 <style>
-  .two-cols-header {
-    gap: 1rem;
-  }
-
   code {
     font-size: 10px!important;
   }
@@ -930,6 +986,12 @@ layout: center
 
 # 生成AIを利用したText-to-UI機能
 
+<img src="/text-to-ui.gif" class="h-[89%]" />
+
+---
+
+# 生成AIを利用したText-to-UI機能
+
 - OpenAIなどのAIモデルでは、JSON Schemaに準拠したレスポンスを生成できるStructured Outputという機能がある
 - ValibotはスキーマをJSON Schemaに変換できるため、AIにValibotスキーマに準拠したページを生成させる
 - 今回はVercel AI SDK, OpenAI APIを利用
@@ -938,7 +1000,8 @@ layout: center
 
 # 生成AIを利用したText-to-UI機能
 
-```ts{all|13|14|all}
+```ts{all|14|15|all}
+// api/chat.ts
 import { openai } from "@ai-sdk/openai"
 import { streamObject } from "ai"
 import { pageSchema } from "../../schema"
@@ -1000,7 +1063,7 @@ layout: center
 
 # 本発表のまとめ
 
-- **Valibot Schema Driven UI とは**：UI ブロックを Valibot スキーマで型安全に定義し、そのままバリデーションと型推論を両立させる設計手法
+- **Valibot Schema Driven UI とは**：UI ブロックを Valibot スキーマで定義し、型安全とバリデーションを活用しながら、スキーマを中心にデータのレンダリングと更新を実装する設計手法
 - **基礎**：フォーム入力 → スキーマ変換 → React でコンポーネントをレンダリングする流れを解説し、編集を即時プレビューできるエディタを実装
 - **発展**：`parentId` による親子構造の定義、スタイリング・ローコード機能・生成 AI を使った Text-to-UI といった拡張例を紹介
 
