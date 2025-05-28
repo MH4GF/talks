@@ -1,6 +1,15 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://mh4gf.dev/contents/tags/talks",
+      "permanent": false
+    }
+  ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/20250519/:path*", "destination": "/20250519/index.html" },
+    { "source": "/20250524/:path*", "destination": "/20250524/index.html" }
   ],
   "buildCommand": "pnpm run build",
   "outputDirectory": "dist"
